@@ -20,6 +20,7 @@ import subprocess
 from wordcloud import WordCloud
 from webdriver_manager.chrome import ChromeDriverManager
 
+
 nlp = spacy.load("en_core_web_sm")
 #subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
 stop_words = set(stopwords.words('english'))
