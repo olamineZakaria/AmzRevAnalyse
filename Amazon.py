@@ -29,11 +29,11 @@ options = Options()
 options.add_argument('--disable-gpu')
 options.add_argument('--headless')
 # chrome_driver_path = "chromedriver.exe" 
-def get_driver():
-    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+# def get_driver():
+#     return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 # service = Service(chrome_driver_path)
 # driver = webdriver.Chrome(service=service, options=chrome_options)
-driver = get_driver()
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 def get_url_review_page(UrlProduct,i):
     UrlReview = UrlProduct.replace('dp','product-reviews') + '?pageNumber=' + str(i)
     return UrlReview
