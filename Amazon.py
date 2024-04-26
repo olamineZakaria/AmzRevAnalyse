@@ -15,15 +15,22 @@ import plotly.express as px
 import requests
 import subprocess
 from wordcloud import WordCloud
+from webdriver_manager.chrome import ChromeDriverManager
 
 nlp = spacy.load("en_core_web_sm")
 #subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
 stop_words = set(stopwords.words('english'))
 chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_driver_path = "chromedriver.exe" 
-service = Service(chrome_driver_path)
-driver = webdriver.Chrome(service=service, options=chrome_options)
+#chrome_options.add_argument("--headless")
+options = Options()
+options.add_argument('--disable-gpu')
+options.add_argument('--headless')
+# chrome_driver_path = "chromedriver.exe" 
+def get_driver():
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+# service = Service(chrome_driver_path)
+# driver = webdriver.Chrome(service=service, options=chrome_options)
+driver = get_driver()
 def get_url_review_page(UrlProduct,i):
     UrlReview = UrlProduct.replace('dp','product-reviews') + '?pageNumber=' + str(i)
     return UrlReview
