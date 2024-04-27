@@ -35,7 +35,7 @@ with st.sidebar:
     st.header("equipe")
     equipe = """
     - [El ouankrimi ali](https://www.linkedin.com/in/alielouankrimi/)
-    - [Olamine zakaria](www.linkedin.com/in/zakaria-olamine-20031115oz)
+    - [Olamine zakaria](https://www.linkedin.com/in/zakaria-olamine-20031115oz)
     - [Oubella abdallah](https://www.linkedin.com/in/abdallah-oubella-2b5662239/)
     """
     st.markdown(equipe)
@@ -56,7 +56,6 @@ if st.button("Analyser"):
                 col2.text(product_name)
                 col2.text(am.get_global_rating(url_produit))
                 col2.text(stars)
-                print(stars)
                 df = am.comment_dataFrame(url_produit)
                 print(df.shape[0])
                 xx = am.sentiemnt_by_comment(df)
@@ -74,6 +73,24 @@ if st.button("Analyser"):
                 fig = px.imshow(wordcloud.to_array(), binary_string=True)
                 fig.update_layout(title='Word Cloud for Negative Comments')
                 st.plotly_chart(fig)
+                neutral_comments = df[df['sentiment']=='Neutral']['comment']
+                neutral_text = ' '.join(neutral_comments)
+                wordcloud = am.WordCloud(width=800,height=400,background_color='white').generate(neutral_text)
+                fig = px.imshow(wordcloud.to_array(),binary_string=True)
+                fig.update_layout(title='Word Cloud for Neutral Comments')
+                st.plotly_chart(fig)
+                #####By chatGpt##########################################
+                # st.header("Analyse thématique avec LDA")
+                # st.write("Analyse des thèmes principaux des avis")
+                # vectorizer = am.CountVectorizer() 
+                # X = vectorizer.fit_transform(df['comment'])
+                # lda = am.LatentDirichletAllocation(n_components=5, random_state=42)
+                # lda.fit(X)
+                # feature_names = vectorizer.get_feature_names_out()
+                # for topic_idx, topic in enumerate(lda.components_):                              
+                #     st.subheader(f"Sujet {topic_idx}:")                                          
+                #     st.write(" ".join([feature_names[i] for i in topic.argsort()[:-10 - 1:-1]]) 
+                ####################################################################################
             else:
                 st.error("La verification de Url est echouee Merci de verifier URL de votre produit")
         except Exception as e:
