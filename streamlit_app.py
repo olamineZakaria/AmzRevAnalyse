@@ -4,7 +4,7 @@ import Amazon as am
 import plotly.express as px
 st.title("Review Reveal")
 with st.sidebar:
-    image_url = ''
+    image_url = 'our Logo'
     st.markdown(
     f"""
     <style>
