@@ -79,18 +79,6 @@ if st.button("Analyser"):
                 fig = px.imshow(wordcloud.to_array(),binary_string=True)
                 fig.update_layout(title='Word Cloud for Neutral Comments')
                 st.plotly_chart(fig)
-                #####By chatGpt##########################################
-                # st.header("Analyse thématique avec LDA")
-                # st.write("Analyse des thèmes principaux des avis")
-                # vectorizer = am.CountVectorizer() 
-                # X = vectorizer.fit_transform(df['comment'])
-                # lda = am.LatentDirichletAllocation(n_components=5, random_state=42)
-                # lda.fit(X)
-                # feature_names = vectorizer.get_feature_names_out()
-                # for topic_idx, topic in enumerate(lda.components_):                              
-                #     st.subheader(f"Sujet {topic_idx}:")                                          
-                #     st.write(" ".join([feature_names[i] for i in topic.argsort()[:-10 - 1:-1]]) 
-                ####################################################################################
             else:
                 st.error("La verification de Url est echouee Merci de verifier URL de votre produit")
         except Exception as e:
