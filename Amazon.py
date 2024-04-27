@@ -80,7 +80,7 @@ def extract_all_reviews(UrlProduct):
     url_review = get_url_review_page(UrlProduct,1)
     numberOfpages = 10
     for i in range(1,numberOfpages+1):
-        url_review = get_url_review_page(UrlProduct,1)
+        url_review = get_url_review_page(UrlProduct,i)
         reviews = extract_reviews(url_review)
         all_reviews.extend(reviews)
         # with open("file.txt", "a", encoding="utf-8") as file:
