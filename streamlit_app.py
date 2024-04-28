@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-import Amazon as am
+import amaproductreviews as am
 import plotly.express as px
 st.title("Review Reveal")
 with st.sidebar:
@@ -28,7 +28,7 @@ with st.sidebar:
     """
     st.markdown(description)
     github_link = """
-    [Consultez le code source sur GitHub](https://github.com/)
+    [Consultez le code source sur GitHub](https://github.com/olamineZakaria/ReviewReveal)
     """
     st.markdown(github_link)
     linkedin_icon_url = "https://cdn-icons-png.flaticon.com/256/174/174857.png"
@@ -44,7 +44,7 @@ if st.button("Analyser"):
     with st.spinner("Analyse en cours ..."):
         try:
             reponse = requests.get(url_produit)
-            if reponse.status_code==200:
+            if reponse.status_code!=404:
                 st.success("La verification de URL est avec success Analyse en cours, soyez patient...")
                 st.header("Informations générales sur le produit")
                 product_name = am.get_product_name(url_produit)
