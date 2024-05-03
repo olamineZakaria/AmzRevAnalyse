@@ -45,7 +45,7 @@ if st.button("Analyser"):
         try:
             reponse = requests.get(url_produit)
             if reponse.status_code!=404:
-                st.success("La verification de URL est avec success Analyse en cours, soyez patient...")
+                st.success("La vérification de l'URL a réussi. L'analyse est en cours, veuillez patienter...")
                 st.header("Informations générales sur le produit")
                 product_name = am.get_product_name(url_produit)
                 global_rating = am.get_global_rating(url_produit)
@@ -65,19 +65,19 @@ if st.button("Analyser"):
                 positive_text = ' '.join(positive_comments)
                 wordcloud = am.WordCloud(width=800, height=400, background_color='white').generate(positive_text)
                 fig = px.imshow(wordcloud.to_array(), binary_string=True)
-                fig.update_layout(title='Word Cloud for Positive Comments')
+                fig.update_layout(title='Nuage de mots pour les commentaires positifs')
                 st.plotly_chart(fig)
                 negative_comments = df[df['sentiment'] == 'Negative']['comment']
                 negative_text = ' '.join(negative_comments)
                 wordcloud = am.WordCloud(width=800, height=400, background_color='white').generate(negative_text)
                 fig = px.imshow(wordcloud.to_array(), binary_string=True)
-                fig.update_layout(title='Word Cloud for Negative Comments')
+                fig.update_layout(title='Nuage de mots pour les commentaires négatifs')
                 st.plotly_chart(fig)
                 neutral_comments = df[df['sentiment']=='Neutral']['comment']
                 neutral_text = ' '.join(neutral_comments)
                 wordcloud = am.WordCloud(width=800,height=400,background_color='white').generate(neutral_text)
                 fig = px.imshow(wordcloud.to_array(),binary_string=True)
-                fig.update_layout(title='Word Cloud for Neutral Comments')
+                fig.update_layout(title="Nuage de mots pour les commentaires neutres")
                 st.plotly_chart(fig)
             else:
                 st.error("La verification de Url est echouee Merci de verifier URL de votre produit")
