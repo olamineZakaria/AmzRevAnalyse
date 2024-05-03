@@ -2,9 +2,9 @@ import streamlit as st
 import requests
 import amaproductreviews as am
 import plotly.express as px
-st.title("Review Reveal")
+st.title("AmzRevAnalyse")
 with st.sidebar:
-    image_url = 'our Logo'
+    image_url = 'https://cdn.icon-icons.com/icons2/3962/PNG/512/star_like_rating_feedback_review_icon_251479.png'
     st.markdown(
     f"""
     <style>
@@ -15,7 +15,7 @@ with st.sidebar:
     </style>
     <div class= "image-container">
         <img src="{image_url}"style="width:100px;">
-        <h1><u>Review Reveal</u></h1>
+        <h1><u>AmzRevAnalyse</u></h1>
     </div>
     """,
     unsafe_allow_html=True
@@ -28,7 +28,7 @@ with st.sidebar:
     """
     st.markdown(description)
     github_link = """
-    [Consultez le code source sur GitHub](https://github.com/olamineZakaria/ReviewReveal)
+    [Consultez le code source sur GitHub](https://github.com/olamineZakaria/AmzRevAnalyse)
     """
     st.markdown(github_link)
     linkedin_icon_url = "https://cdn-icons-png.flaticon.com/256/174/174857.png"
