@@ -56,6 +56,13 @@ if st.button("Analyser"):
                 col2.text(product_name)
                 col2.text(am.get_global_rating(url_produit))
                 col2.text(stars)
+                st.header("Avis avec images")
+                images_reviews_url = am.get_reviews_images(url_produit)
+                html = "<div style='overflow-x: auto; white-space: nowrap;'>"
+                for url in images_reviews_url:
+                    html += f"<img src='{url}' style='width: 100px; margin-right: 10px;'>"
+                html += "</div>"
+                st.markdown(html, unsafe_allow_html=True)
                 df = am.comment_dataFrame(url_produit)
                 print(df.shape[0])
                 xx = am.sentiemnt_by_comment(df)
@@ -79,6 +86,7 @@ if st.button("Analyser"):
                 fig = px.imshow(wordcloud.to_array(),binary_string=True)
                 fig.update_layout(title="Nuage de mots pour les commentaires neutres")
                 st.plotly_chart(fig)
+                
             else:
                 st.error("La verification de Url est echouee Merci de verifier URL de votre produit")
         except Exception as e:
